@@ -1,0 +1,11 @@
+{
+  "name": "@cosmify/frontend",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "nx": {
+    "name": "frontend",
+    "projectType": "application",
+    "sourceRoot": "apps/frontend/src"
+  }
+}

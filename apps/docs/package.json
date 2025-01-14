@@ -1,0 +1,10 @@
+{
+  "name": "@cosmify/docs",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "name": "docs",
+    "projectType": "application",
+    "sourceRoot": "apps/docs/src"
+  }
+}
