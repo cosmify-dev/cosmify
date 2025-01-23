@@ -25,18 +25,11 @@
 
 <script lang="ts" setup>
 import { authClient } from "@/utils/auth";
-import { useRouter } from "vue-router";
-
-const router = useRouter();
 
 const signIn = async () => {
   await authClient.signIn.social({
     provider: "github",
-    fetchOptions: {
-      onSuccess: () => {
-        router.push("/login"); // redirect to login page
-      }
-    }
+    callbackURL: `${import.meta.env.VITE_APP_URL}`
   });
 };
 </script>

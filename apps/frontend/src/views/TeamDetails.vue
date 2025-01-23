@@ -16,7 +16,7 @@
             <Button
               label="Save"
               :disabled="activeOrganization.data?.name === teamDto.name"
-              @click="activeOrganization.data && updateOrganization()"
+              @click="updateOrganization()"
             />
           </div>
         </div>
