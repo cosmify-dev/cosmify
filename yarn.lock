@@ -3543,10 +3543,10 @@ bcrypt-pbkdf@^1.0.2:
   dependencies:
     tweetnacl "^0.14.3"
 
-better-auth@^1.1.12:
-  version "1.1.12"
-  resolved "https://registry.yarnpkg.com/better-auth/-/better-auth-1.1.12.tgz#f591f4f1a817cb026e96284775111f19d10d35f9"
-  integrity sha512-wnJsy6w8G7FHxGB9QmY5K04g7I9J8pA61tcuGF+SUi0dtGI6CJRpJ8A8pGszXXWqwzbJM6cZCklLTdo2QYkinA==
+better-auth@^1.1.15:
+  version "1.1.15"
+  resolved "https://registry.yarnpkg.com/better-auth/-/better-auth-1.1.15.tgz#12b03a13cd0dab5386b4f470e224d1234fe3eff3"
+  integrity sha512-9yCQNPSQG+/1fZhOzktaMgSAfM9Da5IIsAb7pUMVlr/mKvC84TBK6l7xp3m6sKIySNPtM7WSX9j5s8MNPlOscA==
   dependencies:
     "@better-auth/utils" "0.2.3"
     "@better-fetch/fetch" "1.1.12"
@@ -3558,7 +3558,7 @@ better-auth@^1.1.12:
     defu "^6.1.4"
     jose "^5.9.6"
     kysely "^0.27.4"
-    uncrypto "^0.1.3"
+    nanostores "^0.11.3"
     zod "^3.24.1"
 
 better-call@0.3.3, better-call@^0.3.3:

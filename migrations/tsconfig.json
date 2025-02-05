@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "outDir": "out-tsc/backend",
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "module": "nodenext",
+        "types": ["node", "reflect-metadata"],
+        "rootDir": "src",
+        "lib": ["esnext"],
+        "forceConsistentCasingInFileNames": true,
+        "declaration": false,
+        "strict": true,
+        "sourceMap": true,
+        "moduleResolution": "nodenext",
+        "tsBuildInfoFile": "out-tsc/backend/tsconfig.app.tsbuildinfo",
+        "strictPropertyInitialization": false,
+        "noImplicitReturns": false,
+        /* TypeOrm */
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true
+    },
+    "include": ["src/**/*.ts"],
+    "exclude": ["eslint.config.js", "eslint.config.cjs", "eslint.config.mjs"]
+}

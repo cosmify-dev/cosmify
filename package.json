@@ -16,7 +16,7 @@
     "@vueuse/core": "^12.4.0",
     "@vueuse/integrations": "^12.4.0",
     "axios": "^1.7.9",
-    "better-auth": "^1.1.12",
+    "better-auth": "^1.1.15",
     "better-call": "^0.3.3",
     "better-fetch": "^1.1.2",
     "class-transformer": "^0.5.1",

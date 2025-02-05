@@ -1,16 +1,17 @@
-export PORT=3000
-export NODE_ENV=development
-export DATABASE_HOST=localhost
-export DATABASE_PORT=5432
-export DATABASE_USERNAME=admin
-export DATABASE_PASSWORD=admin
-export DATABASE_NAME=cosmify
-export SSH_KEY_PATH="$HOME/.ssh/"
-
-export FRONTEND_BASE_URL="http://localhost:5173"
-
-# Auth.js transfer cookies only over https (default: true, local development: false)
-export AUTH_SECURE_COOKIES=true
-export AUTH_SECRET=""
-export AUTH_GITHUB_ID=""
-export AUTH_GITHUB_SECRET=""
+PORT=3000
+NODE_ENV=development
+DATABASE_HOST=localhost
+DATABASE_PORT=5432
+DATABASE_USERNAME=admin
+DATABASE_PASSWORD=admin
+DATABASE_NAME=cosmify
+SSH_KEY_PATH="$HOME/.ssh/"
+FRONTEND_BASE_URL="http://localhost:5173"
+AUTH_SECURE_COOKIES=false
+BETTER_AUTH_SECRET=""
+BETTER_AUTH_URL="http://localhost:3000"
+AUTH_GITHUB_ID=""
+AUTH_GITHUB_SECRET=""
+SMTP_HOST="localhost"
+SMTP_PORT=1025
+SMTP_SECURE=false

@@ -1,5 +1,4 @@
-import type { ToastMessageOptions } from "primevue/toast";
-import type { LocationQuery, LocationQueryValue } from "vue-router";
+import type { LocationQueryValue } from "vue-router";
 
 export type DeleteEntity = {
   name: string;

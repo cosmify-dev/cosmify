@@ -7,7 +7,7 @@ export default new DataSource({
   username: "admin",
   password: "admin",
   database: "cosmify",
-  entities: ["src/**/*.entity.ts"],
-  migrations: ["src/migrations/*.ts"],
+  entities: ["../apps/backend/src/**/*.entity.ts"],
+  migrations: ["../apps/backend/src/migrations/*.ts"],
   migrationsTableName: "migrations"
 });
