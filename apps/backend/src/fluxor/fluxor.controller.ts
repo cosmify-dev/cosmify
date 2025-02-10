@@ -25,6 +25,7 @@ export interface IFluxorController {
   validate(req: Request, res: Response, next: NextFunction): Promise<void>;
   start(req: Request, res: Response, next: NextFunction): Promise<void>;
   restart(req: Request, res: Response, next: NextFunction): Promise<void>;
+  refreshImages(req: Request, res: Response, next: NextFunction): Promise<void>;
   stop(req: Request, res: Response, next: NextFunction): Promise<void>;
   queryContainerLogs(req: Request, res: Response, next: NextFunction): Promise<void>;
   queryContainerStats(req: Request, res: Response, next: NextFunction): Promise<void>;
@@ -204,6 +205,31 @@ export class FluxorController implements IFluxorController {
     });
 
     res.json(stats).status(StatusCodes.OK);
+  });
+
+  public refreshImages = catchError(async (req: Request, res: Response): Promise<void> => {
+    const params: ID = res.locals.params;
+    const organizationId: string = res.locals.organizationId;
+
+    const flux: Flux | null = await this.fluxorService.findOneById(organizationId, params.id);
+    if (!flux || !flux.directoryPath)
+      throw new NotFoundError(`Flux with id ${params.id} not found!`);
+
+    const transactionId = await this.transactionService.refreshImages(
+      organizationId,
+      flux.server.id,
+      flux.id
+    );
+
+    await this.fluxorService.update(organizationId, flux.id, {
+      status: Status.ONLINE
+    });
+
+    res
+      .json({
+        transactionId: transactionId
+      })
+      .status(StatusCodes.OK);
   });
 
   public restart = catchError(async (req: Request, res: Response): Promise<void> => {

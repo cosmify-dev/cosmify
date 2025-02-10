@@ -38,7 +38,8 @@ export type Flux = BaseEntity & {
 export enum FluxAction {
   "START",
   "STOP",
-  "RESTART"
+  "RESTART",
+  "REFRESH_IMAGES"
 }
 
 export type CreateFluxDto = Omit<
@@ -133,7 +134,6 @@ export const newProxyFluxDto = (data: {
         image: "traefik:v3.1",
         command: [
           "--providers.docker=true",
-          "--api.insecure=true",
           "--providers.docker.exposedbydefault=false",
           "--entryPoints.web.address=:80",
           "--entryPoints.websecure.address=:443",

@@ -48,6 +48,7 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SelectButton: typeof import('primevue/selectbutton')['default']
+    SplitButton: typeof import('primevue/splitbutton')['default']
     StepperBackButton: typeof import('./src/components/StepperBackButton.vue')['default']
     StepperNextButton: typeof import('./src/components/StepperNextButton.vue')['default']
     Tag: typeof import('primevue/tag')['default']

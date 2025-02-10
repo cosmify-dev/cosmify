@@ -32,32 +32,21 @@
         "
       />
 
-      <Button
-        v-if="flux?.status === FluxStatus.OFFLINE"
-        label="Start"
-        severity="secondary"
-        size="small"
+      <SplitButton
+        :icon="flux?.status === FluxStatus.ONLINE ? 'pi pi-stop' : ''"
         outlined
-        class="text-green-500"
+        size="small"
+        :label="flux?.status === FluxStatus.ONLINE ? 'Stop' : 'Start'"
+        :pt="{
+          pcButton: {
+            root: flux?.status === FluxStatus.ONLINE ? 'text-red-500' : 'text-green-500'
+          }
+        }"
+        :model="actionItems"
         @click="
           action({
             id: id,
-            action: FluxAction.START
-          })
-        "
-      />
-
-      <Button
-        v-if="flux?.status === FluxStatus.ONLINE"
-        icon="pi pi-stop"
-        label="Stop"
-        size="small"
-        outlined
-        class="text-red-500"
-        @click="
-          action({
-            id: id,
-            action: FluxAction.STOP
+            action: flux?.status === FluxStatus.ONLINE ? FluxAction.STOP : FluxAction.START
           })
         "
       />
@@ -66,11 +55,11 @@
 
   <Tabs value="overview">
     <TabList>
-      <Tab value="overview" :disabled="!flux">Overview</Tab>
-      <Tab value="configuration" :disabled="!flux">Configuration</Tab>
-      <Tab value="logs" :disabled="!flux">Container Logs</Tab>
-      <Tab value="commands" :disabled="!flux">Commands</Tab>
-      <Tab value="settings" :disabled="!flux">Settings</Tab>
+      <Tab value="overview" :disabled="!flux"> Overview </Tab>
+      <Tab value="configuration" :disabled="!flux"> Configuration </Tab>
+      <Tab value="logs" :disabled="!flux"> Container Logs </Tab>
+      <Tab value="commands" :disabled="!flux"> Commands </Tab>
+      <Tab value="settings" :disabled="!flux"> Settings </Tab>
     </TabList>
     <TabPanels v-if="flux" class="-mx-4">
       <TabPanel value="overview">
@@ -274,7 +263,7 @@
 
 <script setup lang="ts">
 import TitleHeader from "@/components/TitleHeader.vue";
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import Tabs from "primevue/tabs";
 import TabList from "primevue/tablist";
 import Tab from "primevue/tab";
@@ -335,6 +324,17 @@ const {
 
 const { mutate: updateFlux, validationErrors, dto, isUpdated } = useFluxUpdateMutation(flux);
 
+watch(
+  () => flux.value?.containers,
+  () => {
+    if (!flux.value?.containers || flux.value.containers.length < 1) return;
+    containerId.value = flux.value.containers[0].id;
+  },
+  {
+    immediate: true
+  }
+);
+
 const {
   data: containerLogs,
   isFetching: isFetchingContainerLogs,
@@ -343,4 +343,27 @@ const {
 
 const { mutate: action } = useFluxActionMutation();
 const { mutate: deleteFlux } = useDeleteFluxMutation();
+
+const actionItems = [
+  {
+    label: "Restart",
+    icon: "pi pi-refresh",
+    command: () => {
+      action({
+        id: props.id,
+        action: FluxAction.RESTART
+      });
+    }
+  },
+  {
+    label: "Refresh images",
+    icon: "pi pi-download",
+    command: () => {
+      action({
+        id: props.id,
+        action: FluxAction.REFRESH_IMAGES
+      });
+    }
+  }
+];
 </script>

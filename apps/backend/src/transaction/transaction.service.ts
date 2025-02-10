@@ -20,6 +20,7 @@ export interface ITransactionService {
   ): Promise<{
     transactionId: string;
   }>;
+  refreshImages(organizationId: string, serverId: string, fluxId: string): Promise<string>;
   removeFlux(organizationId: string, fluxId: string): Promise<string>;
 }
 
@@ -161,15 +162,12 @@ export class TransactionService implements ITransactionService {
               });
         }),
       () => this.actionService.saveFile(organizationId, serverId, `${cwd}${fileName}`, content),
-      ...flux.containers
-        .flatMap((container) => container.image)
-        .flatMap(
-          (image) => () =>
-            this.dockerService.pullImage(organizationId, serverId, image, {
-              async: false,
-              flux: flux
-            })
-        ),
+      () =>
+        this.dockerService.pullImage(organizationId, serverId, fileName, {
+          cwd: cwd,
+          async: false,
+          flux: flux
+        }),
       () =>
         this.dockerService.start(organizationId, serverId, flux.name, fileName, {
           cwd: cwd,
@@ -218,6 +216,57 @@ export class TransactionService implements ITransactionService {
         })
     ]).then(async () => {
       await this.fluxorService.delete(organizationId, flux.id);
+    });
+    return transaction.id;
+  };
+
+  public refreshImages = async (
+    organizationId: string,
+    serverId: string,
+    fluxId: string
+  ): Promise<string> => {
+    await this.serverService.findServerById(organizationId, serverId);
+    const flux = await this.fluxorService.findOneById(organizationId, fluxId);
+    const transaction = await this.transactionRepository.save(organizationId, "refresh_flux");
+
+    const cwd = flux.directoryPath || undefined;
+    const fileName = "docker-compose.yml";
+
+    await this.fluxorService.update(organizationId, flux.id, {
+      status: Status.OFFLINE,
+      directoryPath: cwd
+    });
+
+    this.executeTransaction(organizationId, transaction.id, [
+      () =>
+        this.dockerService.stop(
+          organizationId,
+          serverId,
+          flux.name,
+          fileName,
+          flux.shutdownTimeout,
+          {
+            cwd: cwd,
+            async: false,
+            flux: flux
+          }
+        ),
+      () =>
+        this.dockerService.pullImage(organizationId, serverId, fileName, {
+          cwd: cwd,
+          async: false,
+          flux: flux
+        }),
+      () =>
+        this.dockerService.start(organizationId, serverId, flux.name, fileName, {
+          cwd: cwd,
+          async: false,
+          flux: flux
+        })
+    ]).then(async () => {
+      await this.fluxorService.update(organizationId, flux.id, {
+        status: Status.ONLINE
+      });
     });
     return transaction.id;
   };

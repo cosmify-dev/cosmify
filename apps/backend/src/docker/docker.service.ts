@@ -19,7 +19,7 @@ export interface IDockerService {
   pullImage(
     organizationId: string,
     serverId: string,
-    image: string,
+    composeFilePath: string,
     options?: ExecutionOptions
   ): Promise<ActionResult>;
 
@@ -148,13 +148,16 @@ export class DockerService implements IDockerService {
   public pullImage = async (
     organizationId: string,
     serverId: string,
-    image: string,
+    composeFilePath: string,
     options?: ExecutionOptions
   ) => {
     return await this.actionService.executeCommandAction(
       organizationId,
       serverId,
-      [`echo "Pulling image ${image}..."`, `docker pull ${image}`],
+      [
+        `echo "Pulling images for ${composeFilePath}..."`,
+        `docker compose -f ${composeFilePath} pull`
+      ],
       ActionType.PULL_IMAGE,
       options
     );

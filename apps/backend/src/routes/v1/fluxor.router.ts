@@ -54,6 +54,13 @@ export class FluxorRouter {
       this.fluxorController.restart
     );
 
+    this.router.put(
+      "/:id/refreshImages",
+      authorize(),
+      validateParamDTO(ID),
+      this.fluxorController.refreshImages
+    );
+
     this.router.put("/:id/start", authorize(), validateParamDTO(ID), this.fluxorController.start);
 
     this.router.put("/:id/stop", authorize(), validateParamDTO(ID), this.fluxorController.stop);

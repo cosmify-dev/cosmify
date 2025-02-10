@@ -20,4 +20,4 @@ export class Transaction extends CosmifyEntity {
   actions: Relation<Action>[];
 }
 
-export type TransactionType = "server_validation" | "run_flux" | "remove_flux";
+export type TransactionType = "server_validation" | "run_flux" | "remove_flux" | "refresh_flux";

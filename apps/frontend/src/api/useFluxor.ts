@@ -158,6 +158,9 @@ export const useFluxActionMutation = () => {
         case FluxAction.START:
           uri = "start";
           break;
+        case FluxAction.REFRESH_IMAGES:
+          uri = "refreshImages";
+          break;
       }
 
       await api.put<void>(`/v1/fluxor/${data.id}/${uri}`);

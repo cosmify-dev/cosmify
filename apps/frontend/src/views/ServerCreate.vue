@@ -142,7 +142,7 @@
                   (transaction?.id !== undefined && transaction?.status !== TransactionStatus.ERROR)
                 "
                 @action="serverId && initServer(serverId)"
-              ></ConfirmButton>
+              />
             </div>
           </Panel>
 
@@ -204,11 +204,10 @@ import { useServerConnectivityActionQuery } from "@/api/useActions";
 import { TransactionStatus } from "@/utils/types/transaction.type";
 import { useTransactionQuery } from "@/api/useTransactions";
 import { useCreateFluxorMutation } from "@/api/useFluxor";
-import { useAuthStore } from "@/stores/auth.store";
 import FluxCreationPanel from "@/components/FluxCreationPanel.vue";
+import { authClient } from "@/utils/auth";
 
 const router = useRouter();
-const authStore = useAuthStore();
 
 const step = ref<number>(1);
 
@@ -244,6 +243,9 @@ const { data: transaction } = useTransactionQuery(initTransactionId);
 const { data: defaultNetwork, refetch: refetchDefaultNetwork } =
   useServerDefaultNetworkQuery(serverId);
 
+const session = await authClient.getSession();
+const user = session.data?.user;
+
 const {
   mutate: createProxy,
   data: proxy,
@@ -254,7 +256,7 @@ const {
 } = useCreateFluxorMutation(() =>
   newProxyFluxDto({
     serverId: serverId.value || "",
-    email: authStore.user?.email || "",
+    email: user?.email || "",
     networkIds: defaultNetwork.value?.id ? [defaultNetwork.value?.id] : []
   })
 );
