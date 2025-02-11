@@ -2,7 +2,7 @@ export type Project = {
   id: string;
   name: string;
   environments: Environment[];
-  logoUrl?: string;
+  logoUrl?: string | undefined;
   createdAt: string;
   updatedAt: string;
 };
@@ -28,7 +28,7 @@ export type UpdateProjectDto = Partial<Omit<Project, "id" | "createdAt" | "updat
 export const newCreateProjectDto: () => CreateProjectDto = () => {
   return {
     name: "",
-    logoUrl: "",
+    logoUrl: undefined,
     environments: [
       {
         name: "prod"
