@@ -11,9 +11,6 @@
     },
     {
       "path": "./apps/frontend"
-    },
-    {
-      "path": "./apps/docs"
     }
   ]
 }
