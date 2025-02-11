@@ -10,7 +10,6 @@
     "rootDir": "src",
     "lib": ["esnext"],
     "forceConsistentCasingInFileNames": true,
-    "declaration": false,
     "strict": true,
     "sourceMap": true,
     "moduleResolution": "nodenext",
