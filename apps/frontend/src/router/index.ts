@@ -120,14 +120,14 @@ const router = createRouter({
         layout: "DefaultLayout"
       }
     },
-    {
-      path: "/auth/team",
-      name: "Team",
-      component: () => import("@/views/TeamDetails.vue"),
-      meta: {
-        layout: "DefaultLayout"
-      }
-    }
+    // {
+    //   path: "/auth/team",
+    //   name: "Team",
+    //   component: () => import("@/views/TeamDetails.vue"),
+    //   meta: {
+    //     layout: "DefaultLayout"
+    //   }
+    // }
   ]
 });
 

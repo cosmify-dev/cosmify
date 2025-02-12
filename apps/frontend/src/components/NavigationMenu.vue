@@ -104,10 +104,10 @@ const items = ref([
   {
     label: "Profile",
     items: [
-      {
-        label: "Team",
-        route: "/auth/team"
-      },
+      // {
+      //   label: "Team",
+      //   route: "/auth/team"
+      // },
       {
         label: "Settings",
         route: "/auth/profile"

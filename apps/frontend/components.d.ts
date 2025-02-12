@@ -51,6 +51,7 @@ declare module 'vue' {
     StepperBackButton: typeof import('./src/components/StepperBackButton.vue')['default']
     StepperNextButton: typeof import('./src/components/StepperNextButton.vue')['default']
     Tag: typeof import('primevue/tag')['default']
+    TeamMemberOverview: typeof import('./src/components/TeamMemberOverview.vue')['default']
     Textarea: typeof import('primevue/textarea')['default']
     TitleHeader: typeof import('./src/components/TitleHeader.vue')['default']
     ToggleButton: typeof import('primevue/togglebutton')['default']
