@@ -1,13 +1,15 @@
 <template>
   <TitleHeader title="Team" />
 
-  <Tabs value="general">
+  <Tabs value="settings">
     <TabList>
-      <Tab value="members" :disabled="!activeOrganization.data"> Members </Tab>
+      <!-- <Tab value="members" :disabled="!activeOrganization.data"> Members </Tab> -->
       <Tab value="settings" :disabled="!activeOrganization.data"> Settings </Tab>
     </TabList>
     <TabPanels v-if="activeOrganization.data" class="-mx-4">
-      <TabPanel value="members" />
+      <TabPanel value="members">
+        <TeamMemberOverview />
+      </TabPanel>
       <TabPanel value="settings">
         <div class="flex mt-4 flex-col gap-4">
           <InputTextLabel v-model:data="teamDto.name" label="Name" />
@@ -40,13 +42,16 @@ import TabList from "primevue/tablist";
 const activeOrganization = authClient.useActiveOrganization();
 
 const teamDto = ref<UpdateTeamDto>({
-  name: activeOrganization.value.data?.name
+  name: ""
 });
 
 watch(
   () => activeOrganization.value,
   () => {
     teamDto.value.name = activeOrganization.value?.data?.name;
+  },
+  {
+    immediate: true
   }
 );
 

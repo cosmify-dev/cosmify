@@ -3543,10 +3543,10 @@ bcrypt-pbkdf@^1.0.2:
   dependencies:
     tweetnacl "^0.14.3"
 
-better-auth@^1.1.15:
-  version "1.1.15"
-  resolved "https://registry.yarnpkg.com/better-auth/-/better-auth-1.1.15.tgz#12b03a13cd0dab5386b4f470e224d1234fe3eff3"
-  integrity sha512-9yCQNPSQG+/1fZhOzktaMgSAfM9Da5IIsAb7pUMVlr/mKvC84TBK6l7xp3m6sKIySNPtM7WSX9j5s8MNPlOscA==
+better-auth@^1.1.16:
+  version "1.1.16"
+  resolved "https://registry.yarnpkg.com/better-auth/-/better-auth-1.1.16.tgz#51b1b6e63d9acb4034375bf203b3f50e0b52a1c1"
+  integrity sha512-Xc5pxafKZw4QVU8WYfkV2z4Hd8KCXXbphrgOpe2gA/EfanysLBhE1G/F7cEi5e0bW2pGR+vw6gf0ARHA7VFihg==
   dependencies:
     "@better-auth/utils" "0.2.3"
     "@better-fetch/fetch" "1.1.12"
@@ -4526,15 +4526,15 @@ escape-string-regexp@^5.0.0:
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-5.0.0.tgz#4683126b500b61762f2dbebace1806e8be31b1c8"
   integrity sha512-/veY75JbMK4j1yjvuUxuVsiS/hr/4iHs9FTT6cgTexxdE0Ly/glccBAkloH/DofkjRbZU3bnoj38mOmhkZ0lHw==
 
+eslint-config-prettier@^10.0.1:
+  version "10.0.1"
+  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-10.0.1.tgz#fbb03bfc8db0651df9ce4e8b7150d11c5fe3addf"
+  integrity sha512-lZBts941cyJyeaooiKxAtzoPHTN+GbQTJFAIdQbRhA4/8whaAraEh47Whw/ZFfrjNSnlAxqfm9i0XVAEkULjCw==
+
 eslint-config-prettier@^8.3.0:
   version "8.10.0"
   resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-8.10.0.tgz#3a06a662130807e2502fc3ff8b4143d8a0658e11"
   integrity sha512-SM8AMJdeQqRYT9O9zguiruQZaN7+z+E4eAP9oiLNGKMtomwaB1E9dcgUD6ZAn/eQAb52USbvezbiljfZUhbJcg==
-
-eslint-config-prettier@^9.0.0:
-  version "9.1.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-9.1.0.tgz#31af3d94578645966c082fcb71a5846d3c94867f"
-  integrity sha512-NSWl5BFQWEPi1j4TjVNItzYV7dZXZ+wP6I6ZhrBGpChQhZRUaElihE9uRRkcbRnNb76UMKDF3r+WTmNcGPKsqw==
 
 eslint-plugin-prettier@^4.0.0:
   version "4.2.1"

@@ -1,4 +1,5 @@
 const vue = require("eslint-plugin-vue");
+const eslintConfigPrettier = require("eslint-config-prettier");
 const baseConfig = require("../../eslint.config.cjs");
 
 module.exports = [
@@ -17,5 +18,6 @@ module.exports = [
     rules: {
       "vue/singleline-html-element-content-newline": "off"
     }
-  }
+  },
+  eslintConfigPrettier
 ];

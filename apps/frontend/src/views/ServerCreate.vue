@@ -138,8 +138,8 @@
                 label="Initialize"
                 :disabled="
                   !serverId ||
-                  connectivity !== ServerStatus.ONLINE ||
-                  (transaction?.id !== undefined && transaction?.status !== TransactionStatus.ERROR)
+                    connectivity !== ServerStatus.ONLINE ||
+                    (transaction?.id !== undefined && transaction?.status !== TransactionStatus.ERROR)
                 "
                 @action="serverId && initServer(serverId)"
               />
