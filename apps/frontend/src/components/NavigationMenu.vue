@@ -80,10 +80,10 @@ const items = ref([
       }
     ]
   },
-  {
-    label: "Projects",
-    route: "/projects"
-  },
+  // {
+  //   label: "Projects",
+  //   route: "/projects"
+  // },
   {
     label: "Fluxor",
     route: "/fluxor",

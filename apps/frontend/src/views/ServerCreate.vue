@@ -138,8 +138,8 @@
                 label="Initialize"
                 :disabled="
                   !serverId ||
-                    connectivity !== ServerStatus.ONLINE ||
-                    (transaction?.id !== undefined && transaction?.status !== TransactionStatus.ERROR)
+                  connectivity !== ServerStatus.ONLINE ||
+                  (transaction?.id !== undefined && transaction?.status !== TransactionStatus.ERROR)
                 "
                 @action="serverId && initServer(serverId)"
               />
@@ -243,8 +243,8 @@ const { data: transaction } = useTransactionQuery(initTransactionId);
 const { data: defaultNetwork, refetch: refetchDefaultNetwork } =
   useServerDefaultNetworkQuery(serverId);
 
-const session = await authClient.getSession();
-const user = session.data?.user;
+const session = authClient.getSession();
+const email = computed(() => session.data?.user.email || "");
 
 const {
   mutate: createProxy,
@@ -256,7 +256,7 @@ const {
 } = useCreateFluxorMutation(() =>
   newProxyFluxDto({
     serverId: serverId.value || "",
-    email: user?.email || "",
+    email: email.value || "",
     networkIds: defaultNetwork.value?.id ? [defaultNetwork.value?.id] : []
   })
 );

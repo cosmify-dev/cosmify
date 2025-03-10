@@ -56,14 +56,15 @@ export default class Server {
         hsts: false
       })
     );
-    this.app.all("/v1/auth/*", toNodeHandler(auth.handler));
     // this.app.use(cors());
     this.app.use(
       cors({
-        origin: "http://localhost:5173",
+        origin: "http://localhost:5173", // Replace with your frontend's origin
+        methods: ["GET", "POST", "PUT", "DELETE"], // Specify allowed HTTP methods
         credentials: true
       })
     );
+    this.app.all("/v1/auth/*", toNodeHandler(auth.handler));
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
     this.app.set("trust proxy", true);

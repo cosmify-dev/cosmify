@@ -128,6 +128,13 @@ const router = createRouter({
     //     layout: "DefaultLayout"
     //   }
     // }
+    { 
+      path: "/:pathMatch(.*)*", 
+      component: () => import("@/views/PageNotFound.vue"),
+      meta: {
+        layout: "ZeroLayout"
+      }
+    }
   ]
 });
 

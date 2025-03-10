@@ -16,8 +16,20 @@
       <Divider class="select-none"> or </Divider>
 
       <div class="flex flex-col gap-2 w-full">
-        <Button label="cosmify.dev" icon="pi pi-home" class="w-full" outlined />
-        <Button label="Documentation" icon="pi pi-book" class="w-full" outlined />
+        <Button
+          label="cosmify.dev"
+          icon="pi pi-home"
+          class="w-full"
+          outlined
+          @click="() => redirect('https://cosmify.dev')"
+        />
+        <Button
+          label="Documentation"
+          icon="pi pi-book"
+          class="w-full"
+          outlined
+          @click="() => redirect('https://cosmify.dev/docs/getting-started/introduction')"
+        />
       </div>
     </div>
   </div>
@@ -31,5 +43,9 @@ const signIn = async () => {
     provider: "github",
     callbackURL: `${import.meta.env.VITE_APP_URL}`
   });
+};
+
+const redirect = (link: string) => {
+  window.location.href = link;
 };
 </script>
