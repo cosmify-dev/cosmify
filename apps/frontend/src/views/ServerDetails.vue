@@ -8,7 +8,6 @@
       <Button
         icon="pi pi-arrow-left"
         label="Back"
-        severity="secondary"
         size="small"
         outlined
         @click="router.push('/servers')"

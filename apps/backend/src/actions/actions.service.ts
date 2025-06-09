@@ -14,7 +14,7 @@ import { type IServerRepository, Server } from "../server/index.js";
 import { type IActionRepository } from "./actions.repository.js";
 import { ActionType, Status } from "./actions.type.js";
 import { Action } from "./actions.entity.js";
-import { type IInsightRepository } from "../insight/index.js";
+import { CommandLog, type IInsightRepository } from "../insight/index.js";
 import { Pagination } from "../validations/pagination.validation.js";
 import { NodeSSH } from "node-ssh";
 import nodePath from "node:path";
@@ -505,6 +505,15 @@ export class ActionService implements IActionService {
     for (const command of commands) {
       if (!success && !options.ignoreErrorsOfPreviousCommands) break;
       try {
+        const commandLog: CommandLog = await this.insightRepository.saveCommandLog(organizationId, {
+          server: server,
+          action: action,
+          command: convertCommandToString(command),
+          stdout: "",
+          stderr: "",
+          status: Status.EXECUTING
+        });
+
         const result: Result = await this.remoteService.executeCommands(
           server,
           privateKey,
@@ -518,11 +527,8 @@ export class ActionService implements IActionService {
           for (const converter of command.converters) await converter(server, result);
 
         if (!result.success || options.enableCommandLogs) {
-          await this.insightRepository.saveCommandLog(organizationId, {
-            server: server,
-            action: action,
-            command: convertCommandToString(command),
-            stdout: result.stdout,
+          await this.insightRepository.updateCommandLog(organizationId, commandLog.id, {
+            stdout: !result.success || options.enableCommandLogs ? result.stdout : "<redacted>",
             stderr: result.stderr,
             status: result.success ? Status.SUCCESS : Status.ERROR
           });

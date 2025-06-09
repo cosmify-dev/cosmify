@@ -9,6 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     ActionPanel: typeof import('./src/components/ActionPanel.vue')['default']
     Avatar: typeof import('primevue/avatar')['default']
+    BackButton: typeof import('./src/components/BackButton.vue')['default']
     Badge: typeof import('primevue/badge')['default']
     Button: typeof import('primevue/button')['default']
     Card: typeof import('primevue/card')['default']
@@ -22,6 +23,7 @@ declare module 'vue' {
     DialogButton: typeof import('./src/components/DialogButton.vue')['default']
     Divider: typeof import('primevue/divider')['default']
     FluxCreationPanel: typeof import('./src/components/FluxCreationPanel.vue')['default']
+    FluxProxy: typeof import('./src/components/FluxProxy.vue')['default']
     IconField: typeof import('primevue/iconfield')['default']
     InputAreaLabel: typeof import('./src/components/InputAreaLabel.vue')['default']
     InputArrayLabel: typeof import('./src/components/InputArrayLabel.vue')['default']

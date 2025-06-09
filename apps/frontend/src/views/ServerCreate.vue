@@ -1,7 +1,7 @@
 <template>
   <TitleHeader title="New server">
     <template #right>
-      <Button label="Back" severity="secondary" size="small" outlined @click="router.go(-1)" />
+      <Button label="Back" size="small" outlined @click="router.go(-1)" />
     </template>
   </TitleHeader>
 
@@ -147,7 +147,7 @@
           </Panel>
 
           <div class="flex flex-col gap-4">
-            <ActionPanel v-for="action in transaction?.actions" :key="action.id" :action="action" />
+            <ActionPanel v-for="action in sortActions()" :key="action.id" :action="action" />
           </div>
         </div>
         <div class="flex pt-6 justify-between">
@@ -206,6 +206,7 @@ import { useTransactionQuery } from "@/api/useTransactions";
 import { useCreateFluxorMutation } from "@/api/useFluxor";
 import FluxCreationPanel from "@/components/FluxCreationPanel.vue";
 import { authClient } from "@/utils/auth";
+import { compareAsc } from "date-fns";
 
 const router = useRouter();
 
@@ -260,6 +261,11 @@ const {
     networkIds: defaultNetwork.value?.id ? [defaultNetwork.value?.id] : []
   })
 );
+
+const sortActions = () => {
+  if (!transaction.value?.actions) return [];
+  return [...transaction.value.actions].sort((a, b) => compareAsc(a.createdAt, b.createdAt));
+};
 
 watch(
   () => transaction.value?.status,

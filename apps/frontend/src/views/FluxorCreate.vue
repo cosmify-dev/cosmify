@@ -1,14 +1,7 @@
 <template>
   <TitleHeader title="New Flux">
     <template #right>
-      <Button
-        icon="pi pi-arrow-left"
-        label="Back"
-        severity="secondary"
-        size="small"
-        outlined
-        @click="router.go(-1)"
-      />
+      <Button icon="pi pi-arrow-left" label="Back" size="small" outlined @click="router.go(-1)" />
       <ConfirmButton
         size="small"
         label="Reset"

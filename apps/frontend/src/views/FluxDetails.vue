@@ -8,7 +8,6 @@
       <Button
         icon="pi pi-arrow-left"
         label="Back"
-        severity="secondary"
         size="small"
         outlined
         @click="router.push('/fluxor')"
@@ -49,6 +48,7 @@
             action: flux?.status === FluxStatus.ONLINE ? FluxAction.STOP : FluxAction.START
           })
         "
+        :disabled="!flux || isFetching || flux.status === FluxStatus.PENDING"
       />
     </template>
   </TitleHeader>

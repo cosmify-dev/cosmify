@@ -13,23 +13,23 @@ const router = createRouter({
         layout: "DefaultLayout"
       }
     },
-    {
-      path: "/projects",
-      name: "Projects",
-      component: () => import("@/views/ProjectsOverview.vue"),
-      meta: {
-        layout: "DefaultLayout"
-      }
-    },
-    {
-      path: "/projects/:id",
-      name: "Project",
-      component: () => import("@/views/ProjectDetails.vue"),
-      props: true,
-      meta: {
-        layout: "DefaultLayout"
-      }
-    },
+    // {
+    //   path: "/projects",
+    //   name: "Projects",
+    //   component: () => import("@/views/ProjectsOverview.vue"),
+    //   meta: {
+    //     layout: "DefaultLayout"
+    //   }
+    // },
+    // {
+    //   path: "/projects/:id",
+    //   name: "Project",
+    //   component: () => import("@/views/ProjectDetails.vue"),
+    //   props: true,
+    //   meta: {
+    //     layout: "DefaultLayout"
+    //   }
+    // },
     {
       path: "/fluxor",
       name: "Fluxor",
@@ -127,9 +127,9 @@ const router = createRouter({
     //   meta: {
     //     layout: "DefaultLayout"
     //   }
-    // }
-    { 
-      path: "/:pathMatch(.*)*", 
+    // },
+    {
+      path: "/:pathMatch(.*)*",
       component: () => import("@/views/PageNotFound.vue"),
       meta: {
         layout: "ZeroLayout"

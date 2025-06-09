@@ -16,28 +16,28 @@
     <TabPanels class="-mx-4">
       <TabPanel value="general">
         <div class="flex flex-col gap-4">
-          <InputSelectLabel
-            v-model:data="dto.project"
-            v-model:validation-errors="validationErrors['project']"
-            label="Project"
-            :options="projects"
-            placeholder="Select project"
-            :is-fetching="isFetchingProjects"
-            :lazy-loading="{
-              load: loadProjects
-            }"
-            @refresh-data="refetchProjects"
-          />
+          <!--          <InputSelectLabel-->
+          <!--            v-model:data="dto.project"-->
+          <!--            v-model:validation-errors="validationErrors['project']"-->
+          <!--            label="Project"-->
+          <!--            :options="projects"-->
+          <!--            placeholder="Select project"-->
+          <!--            :is-fetching="isFetchingProjects"-->
+          <!--            :lazy-loading="{-->
+          <!--              load: loadProjects-->
+          <!--            }"-->
+          <!--            @refresh-data="refetchProjects"-->
+          <!--          />-->
 
-          <InputSelectLabel
-            v-model:data="dto.environment"
-            v-model:validation-errors="validationErrors['environment']"
-            label="Environment"
-            :options="selectedProject?.environments"
-            placeholder="Select environment"
-            :is-fetching="isFetchingProjects"
-            @refresh-data="refetchProjects"
-          />
+          <!--          <InputSelectLabel-->
+          <!--            v-model:data="dto.environment"-->
+          <!--            v-model:validation-errors="validationErrors['environment']"-->
+          <!--            label="Environment"-->
+          <!--            :options="selectedProject?.environments"-->
+          <!--            placeholder="Select environment"-->
+          <!--            :is-fetching="isFetchingProjects"-->
+          <!--            @refresh-data="refetchProjects"-->
+          <!--          />-->
 
           <InputTextLabel
             v-model:data="dto.name"
@@ -111,7 +111,6 @@ import TabList from "primevue/tablist";
 import Tab from "primevue/tab";
 import TabPanels from "primevue/tabpanels";
 import TabPanel from "primevue/tabpanel";
-import { useLazyProjectsQuery } from "@/api/useProjects";
 
 const dto = defineModel<CreateFluxDto>("dto", {
   required: true
@@ -122,7 +121,7 @@ const validationErrors = defineModel<never>("validationErrors", {
 });
 
 const serverId = computed(() => dto.value.server);
-const projectId = computed(() => dto.value.project);
+// const projectId = computed(() => dto.value.project);
 
 const {
   items: servers,
@@ -131,11 +130,11 @@ const {
   isFetching: isFetchingServers
 } = useLazyServersQuery(serverId);
 
-const {
-  items: projects,
-  refetch: refetchProjects,
-  load: loadProjects,
-  isFetching: isFetchingProjects,
-  selectedItem: selectedProject
-} = useLazyProjectsQuery(projectId);
+// const {
+//   items: projects,
+//   refetch: refetchProjects,
+//   load: loadProjects,
+//   isFetching: isFetchingProjects,
+//   selectedItem: selectedProject
+// } = useLazyProjectsQuery(projectId);
 </script>
