@@ -131,7 +131,7 @@ export const newProxyFluxDto = (data: {
     containers: [
       {
         name: "main",
-        image: "traefik:v3.1",
+        image: "traefik:v3.6.1",
         command: [
           "--providers.docker=true",
           "--providers.docker.exposedbydefault=false",
